@@ -81,7 +81,8 @@ QIODevice* QFCgiRequest::getErr() const {
   return this->err;
 }
 
-void QFCgiRequest::onOutBytesWritten(qint64 bytes __unused) {
+void QFCgiRequest::onOutBytesWritten(qint64 bytes) {
+  Q_UNUSED(bytes);
   QByteArray &ba = this->out->getBuffer();
   int nbytes = qMin(65535, ba.size());
 
@@ -92,7 +93,8 @@ void QFCgiRequest::onOutBytesWritten(qint64 bytes __unused) {
   connection->send(record);
 }
 
-void QFCgiRequest::onErrBytesWritten(qint64 bytes __unused) {
+void QFCgiRequest::onErrBytesWritten(qint64 bytes) {
+  Q_UNUSED(bytes);
   QByteArray &ba = this->err->getBuffer();
   int nbytes = qMin(65535, ba.size());
 
