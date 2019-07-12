@@ -15,13 +15,20 @@
 # along with QFCgi. If not, see <http://www.gnu.org/licenses/>.
 ##
 
-cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required(VERSION 3.1.0)
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
-find_package(Qt4 REQUIRED QtCore QtNetwork)
+
+if(CMAKE_VERSION VERSION_LESS "3.7.0")
+    set(CMAKE_INCLUDE_CURRENT_DIR ON)
+endif()
+
+find_package(Qt5 COMPONENTS Core REQUIRED)
+find_package(Qt5 COMPONENTS Network REQUIRED)
 
 if (NOT DISABLE_TESTING)
+  find_package(Qt5Test REQUIRED)
   enable_testing()
   add_subdirectory(test)
 endif(NOT DISABLE_TESTING)
@@ -59,7 +66,7 @@ add_library(qfcgi
   src/qfcgi/tcpbuilder.h
 )
 
-target_link_libraries(qfcgi Qt4::QtCore Qt4::QtNetwork)
+target_link_libraries(qfcgi Qt5::Core Qt5::Network)
 
 install(TARGETS qfcgi
   ARCHIVE DESTINATION lib
