@@ -21,6 +21,7 @@
 #include <QHash>
 #include <QObject>
 #include <QMetaType>
+#include <QIODevice>
 
 class QFCgiConnection;
 class QFCgiStream;
@@ -54,7 +55,7 @@ public:
    * The request-id is part of the FastCGI-specification and is used to identify
    * a request.
    *
-   * @return The id the of the request
+   * @return The id the of the request
    */
   int getId() const;
 
