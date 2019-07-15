@@ -53,3 +53,8 @@ HEADERS += \
         qfcgi/request.h \
         qfcgi/stream.h \
         qfcgi/tcpbuilder.h
+
+headers.path    = /usr/include/libqfcgi
+headers.files  += $$HEADERS
+INSTALLS       += headers
+
