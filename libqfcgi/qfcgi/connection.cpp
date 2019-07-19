@@ -170,8 +170,8 @@ void QFCgiConnection::handleFCGI_PARAMS(QFCgiRequest *request, QFCgiRecord &reco
     request->consumeParamsBuffer(ba);
   } else {
     q2Debug(record, "FCGI_PARAMS (end of stream)");
-    QFCgi *fcgi = qobject_cast<QFCgi*>(parent());
-    emit fcgi->newRequest(request);
+    //QFCgi *fcgi = qobject_cast<QFCgi*>(parent());
+    //emit fcgi->newRequest(request);
   }
 }
 
@@ -184,6 +184,8 @@ void QFCgiConnection::handleFCGI_STDIN(QFCgiRequest *request, QFCgiRecord &recor
   } else {
     q2Debug(record, "FCGI_STDIN (end of stream)");
     request->in->setEof();
+    QFCgi *fcgi = qobject_cast<QFCgi*>(parent());
+    emit fcgi->newRequest(request);
   }
 }
 
